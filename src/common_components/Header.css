@@ -1,0 +1,15 @@
+.header-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #205a7a;
+
+    width: 100%;
+    padding: 10px 0;
+}
+
+.header {
+    color: #ffd400;
+}
