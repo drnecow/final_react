@@ -5,28 +5,45 @@ import Header from './common_components/Header';
 import Footer from './common_components/Footer';
 import MovieCardWrapper from './MovieCardWrapper';
 import MovieSearchBlock from './MovieSearchBlock';
+import Image from './image.jpg';
+import Paginator from './common_components/Paginator';
 
 function MainPage() {
-  let thumbnail_link = "https://upload.wikimedia.org/wikipedia/en/thumb/2/29/H2O_Just_Add_Water.png/375px-H2O_Just_Add_Water.png";
-
   let cards = []
 
   for (let i = 0; i < 9; i++)
     cards.push( {
-      'thumbnail_link': thumbnail_link,
+      'thumbnail_link': Image,
       'is_series': true,
       'title': 'H20: Just Add Water',
       'release_year': 2006,
       'country': 'Australia',
       'main_genre': 'Teen drama'
     } );
+  
+  for (let i = 0; i < 74; i++)
+    cards.push( {
+      'thumbnail_link': Image,
+      'is_series': false,
+      'title': 'Another Movie',
+      'release_year': 2022,
+     'country': 'Kazakhstan',
+      'main_genre': 'Detective'
+    } );
+
+  const [cardsOnPage, setCardsOnPage] = React.useState(cards.slice(0, Math.min(9, cards.length)));
+
+  function changeCardsOnPage(pageNumber) {
+    setCardsOnPage(cards.slice(pageNumber * 9 - 9, Math.min(pageNumber * 9, cards.length)));
+  }
 
   return (
     <div className='background'>
       <div className='main-content'>
         <Header />
         <MovieSearchBlock />
-        <MovieCardWrapper cardsToDisplay={ cards } />
+        <MovieCardWrapper cardsToDisplay={ cardsOnPage } />
+        <Paginator numPages = { Math.ceil(cards.length / 9) } updateFunc = { changeCardsOnPage } />
         <Footer />
       </div>
     </div>
