@@ -17,12 +17,17 @@ function Paginator( { numPages, updateFunc }) {
 
   useEffect(() => {
         updateFunc(selectedPage);
-        console.log(selectedPage);
 
-        if (endPage === numPages - 1)
+        if (endPage === numPages - 1 || selectedPage === numPages)
             setSkipEnabled(false);
         else
             setSkipEnabled(true);
+
+        if (selectedPage === numPages && lastPageExists) {
+          setEndPage(numPages - 1);
+          setStartPage(numPages - 5);
+        }
+
     }, [selectedPage]);
 
   function switchPage(pageNumber) {
@@ -36,24 +41,49 @@ function Paginator( { numPages, updateFunc }) {
   }
 
   function scrollBack() {
-    if (startPage > 1) {
-        setStartPage(startPage - 1);
-        setEndPage(endPage - 1);
+    if (selectedPage === startPage || selectedPage === startPage + 1) {
+      if (startPage - 3 > 0) {
+        setStartPage(startPage - 3);
+        setEndPage(endPage - 3);
+        setSelectedPage(selectedPage === startPage ? selectedPage - 1 : selectedPage - 2); 
+      }
+      else {
+        if (longNumPages) {
+          setStartPage(1);
+          setEndPage(5);
+          setSelectedPage(1);
+        }
+        else {
+          setSelectedPage(selectedPage - 1);
+        }
+      }
     }
-    setSelectedPage(selectedPage - 1);
+    else {
+      setSelectedPage(selectedPage - 1);
+    }
   }
-
+  
   function scrollForward() {
-    // console.log(endPage);
-    // // if (selectedPage === endPage - 1) {
-    // //     setEndPage(Math.min(selectedPage + 2, numPages - 1));
-    // //     setStartPage(endPage - 4);
-    // // }
-    if (endPage < numPages - 1) {
-        setStartPage(startPage + 1);
-        setEndPage(endPage + 1);
+    if (selectedPage === endPage || selectedPage === endPage - 1) {
+      if (numPages - 1 - endPage >= 3) {
+        setEndPage(endPage + 3);
+        setStartPage(startPage + 3);
+        setSelectedPage(selectedPage === endPage ? selectedPage + 1 : selectedPage + 2);
+      }
+      else {
+        if (longNumPages && selectedPage !== numPages - 1) {
+          setEndPage(numPages - 1);
+          setStartPage(numPages - 5);
+          setSelectedPage(numPages - 1);
+        }
+        else {
+          setSelectedPage(selectedPage + 1);
+        }
+      }
     }
-    setSelectedPage(selectedPage + 1);
+    else {
+      setSelectedPage(selectedPage + 1);
+    }
   }
 
   function isSelected(i) {
@@ -68,7 +98,7 @@ function Paginator( { numPages, updateFunc }) {
         <span className={`page-link ${selectedPage === 1 ? 'selected' : ''}`} onClick={ scrollBack }>←</span>
         { tmp.map((i) => <span key={ startPage + i } onClick={ () => switchPage(startPage + i) }
             className={`page-link ${isSelected(startPage + i) ? 'selected' : ''}`}>{ startPage + i }</span>) }
-        { longNumPages && (<span className={`page-link ${skipEnabled? '' : 'selected'}` } onClick={ () => skipPages(Math.min(3, numPages - endPage - 1)) }>...</span>) }
+        { longNumPages && (<span className={`page-link ${skipEnabled? '' : 'selected'}` } onClick={ () => skipPages(Math.min(4, numPages - endPage - 1)) }>...</span>) }
         { lastPageExists && 
             (<span key={ numPages } className={`page-link ${selectedPage === numPages? 'selected' : ''}`} onClick={ () => switchPage(numPages) }>{ numPages }</span>) }
         <span className={`page-link ${selectedPage === numPages ? 'selected' : ''}`} onClick={ scrollForward }>→</span>

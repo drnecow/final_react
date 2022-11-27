@@ -1,0 +1,30 @@
+.person-info-wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 75%;
+    margin: 5%;
+}
+
+.left-block {
+    width: 38%;
+}
+
+.right-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    width: 57%;
+}
+
+.person-info-image {
+    width: 100%;
+    height: 330px;
+}
+
+.bold {
+    font-weight: bold;
+}

@@ -21,7 +21,7 @@ function MainPage() {
       'main_genre': 'Teen drama'
     } );
   
-  for (let i = 0; i < 74; i++)
+  for (let i = 0; i < 94; i++)
     cards.push( {
       'thumbnail_link': Image,
       'is_series': false,
