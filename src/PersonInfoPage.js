@@ -26,9 +26,9 @@ function PersonInfoPage({ person }) {
                 <label>
                     <span className='bold'>Birth place: </span> {person['place_of_birth']}
                 </label>
-                <label>
+                { person['is_dead'] && <label>
                     <span className='bold'>Date of death: </span> {person['date_of_death']}
-                </label>
+                </label> }
             </div>
         </div>
         <Footer />

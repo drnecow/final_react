@@ -35,9 +35,11 @@ function Paginator( { numPages, updateFunc }) {
   }
 
   function skipPages(pagesLeft) {
+    let newSelectedPage = startPage + pagesLeft + 1;
+
     setStartPage(startPage + pagesLeft);
     setEndPage(endPage + pagesLeft);
-    setSelectedPage(selectedPage + pagesLeft);
+    setSelectedPage(newSelectedPage);
   }
 
   function scrollBack() {
@@ -45,7 +47,10 @@ function Paginator( { numPages, updateFunc }) {
       if (startPage - 3 > 0) {
         setStartPage(startPage - 3);
         setEndPage(endPage - 3);
-        setSelectedPage(selectedPage === startPage ? selectedPage - 1 : selectedPage - 2); 
+        // setSelectedPage(selectedPage === startPage ? selectedPage - 1 : selectedPage - 2);
+        
+        if (selectedPage === startPage + 1)
+          setSelectedPage(selectedPage - 1);
       }
       else {
         if (longNumPages) {
@@ -68,7 +73,10 @@ function Paginator( { numPages, updateFunc }) {
       if (numPages - 1 - endPage >= 3) {
         setEndPage(endPage + 3);
         setStartPage(startPage + 3);
-        setSelectedPage(selectedPage === endPage ? selectedPage + 1 : selectedPage + 2);
+        // setSelectedPage(selectedPage === endPage ? selectedPage + 1 : selectedPage + 2);
+
+        if (selectedPage === endPage - 1)
+          setSelectedPage(selectedPage + 1);
       }
       else {
         if (longNumPages && selectedPage !== numPages - 1) {
