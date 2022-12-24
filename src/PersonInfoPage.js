@@ -14,8 +14,14 @@ function PersonInfoPage() {
   // "person" object is fetched data that is processed properly
 
   const person = {
-    
-  }
+    'first_name': 'Phoebe',
+    'last_name': 'Tonkin',
+    'photo': "https://flxt.tmsimg.com/assets/516329_v9_bb.jpg",
+    'professions': ['Actress'],
+    'date_of_birth': '12th July 1989',
+    'place_of_birth': 'Sydney, Australia',
+    'is_dead': false
+  };
 
   return (
       <div className='background'>
@@ -24,7 +30,7 @@ function PersonInfoPage() {
           <div className='person-info-wrap'>
               <div className='left-block'>
                   <h2>{ person['first_name'] } { person['last_name'] }</h2>
-                  <img src={ Image } className='person-info-image' />
+                  <img src={ person['photo'] } className='person-info-image' />
               </div>
               <div className='right-block'>
                   <label className='person-info-text'><span className='bold'>Career: </span> { 

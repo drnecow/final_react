@@ -12,7 +12,9 @@ function useFetch(url) {
             })
     }, []);
 
-    return {data}
+    const result = JSON.parse(data);
+
+    return {result}
 }
 
 export default useFetch;

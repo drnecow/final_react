@@ -28,7 +28,7 @@ function MoviePage() {
         'actors': [
             {
                 'id': 2,
-                'name': 'Phoebe Tonkins'
+                'name': 'Phoebe Tonkin'
             },
             {
                 'id': 3,

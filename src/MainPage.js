@@ -12,26 +12,23 @@ import useFetch from "./useFetch";
 function MainPage() { // argument — { cards }, which is processed data from server
   let cards = []
 
-  const {data} = useFetch("http://95.216.147.59/api/movies");
-  console.log(data)
-
-  for (let i = 0; i < data.length; i++)
+  for (let i = 0; i < 11; i++)
     cards.push( {
       'id': 1,
       'thumbnail_link': Image1,
-      'is_series': data.is_series,
-      'title': data.title,
+      'is_series': true,
+      'title': 'H20: Just Add Water',
       'release_year': 2006,
       'country': 'Australia',
       'main_genre': 'Teen drama'
     } );
   
-  for (let i = 0; i < 64; i++)
+    for (let i = 0; i < 11; i++)
     cards.push( {
       'id': 2,
-      'thumbnail_link': Image2,
+      'thumbnail_link': Image1,
       'is_series': false,
-      'title': 'Another Movie',
+      'title': 'Some movie',
       'release_year': 2022,
       'country': 'Kazakhstan',
       'main_genre': 'Detective'
