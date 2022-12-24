@@ -1,0 +1,24 @@
+.video-player-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-bottom: 40px;
+}
+
+.video-player {
+    width: 80%;
+}
+
+.episode-options {
+    font-size: 17px;
+    text-align: center;
+    color: #d5d4d4;
+    background-color: #494848;
+
+    width: 20%;
+    height: 30px;
+    margin-bottom: 10px;
+
+    align-self: center;
+}

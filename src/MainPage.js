@@ -1,19 +1,20 @@
 import React from 'react';
-import './MainPage.css';
 import './common_components/CommonStyles.css';
 import Header from './common_components/Header';
 import Footer from './common_components/Footer';
 import MovieCardWrapper from './MovieCardWrapper';
 import MovieSearchBlock from './MovieSearchBlock';
-import Image from './image.jpg';
+import Image1 from './image.jpg';
+import Image2 from './logo512.png';
 import Paginator from './common_components/Paginator';
 
-function MainPage() {
+function MainPage() { // argument — { cards }, which is processed data from server
   let cards = []
 
   for (let i = 0; i < 9; i++)
     cards.push( {
-      'thumbnail_link': Image,
+      'id': 1,
+      'thumbnail_link': Image1,
       'is_series': true,
       'title': 'H20: Just Add Water',
       'release_year': 2006,
@@ -21,13 +22,14 @@ function MainPage() {
       'main_genre': 'Teen drama'
     } );
   
-  for (let i = 0; i < 194; i++)
+  for (let i = 0; i < 64; i++)
     cards.push( {
-      'thumbnail_link': Image,
+      'id': 2,
+      'thumbnail_link': Image2,
       'is_series': false,
       'title': 'Another Movie',
       'release_year': 2022,
-     'country': 'Kazakhstan',
+      'country': 'Kazakhstan',
       'main_genre': 'Detective'
     } );
 
