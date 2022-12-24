@@ -12,7 +12,7 @@ export default function App() {
   return (
     <BrowserRouter>
         <Routes>
-            {/* <Route index element= {<MainPage />} /> */}
+            <Route index element= {<MainPage />} />
             <Route path='/main_page' element= {<MainPage />} />
             <Route path='/movies/:movie_id' element={<MoviePage />} />
             <Route path='/people/:person_id' element={<PersonInfoPage />} />
