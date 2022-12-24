@@ -7,16 +7,20 @@ import MovieSearchBlock from './MovieSearchBlock';
 import Image1 from './image.jpg';
 import Image2 from './logo512.png';
 import Paginator from './common_components/Paginator';
+import useFetch from "./useFetch";
 
 function MainPage() { // argument — { cards }, which is processed data from server
   let cards = []
 
-  for (let i = 0; i < 9; i++)
+  const {data} = useFetch("http://95.216.147.59/api/movies");
+  console.log(data)
+
+  for (let i = 0; i < data.length; i++)
     cards.push( {
       'id': 1,
       'thumbnail_link': Image1,
-      'is_series': true,
-      'title': 'H20: Just Add Water',
+      'is_series': data.is_series,
+      'title': data.title,
       'release_year': 2006,
       'country': 'Australia',
       'main_genre': 'Teen drama'
